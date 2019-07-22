@@ -62,18 +62,18 @@ function sendParallelRequests(requestsNumber) {
     }
 }
 
-function sendSequentialRequests(count, i) {
+function sendSequentialRequests(requestsNumber, i) {
     if (i === undefined) {
         i = 0
     }
-    if (i++ >= count) {
+    if (i++ >= requestsNumber) {
         return
     }
     console.log('request No ', i);
 
     http.get(connectionOptions, (res) => {
         console.log(res.statusCode);
-        sendSequentialRequests(count, i)
+        sendSequentialRequests(requestsNumber, i)
     })
 }
 
