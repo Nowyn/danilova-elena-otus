@@ -1,9 +1,5 @@
 const http = require('http');
-
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+const params = require('./params');
 
 const connectionOptions = {
     host: 'localhost',
@@ -11,36 +7,12 @@ const connectionOptions = {
     path: '/'
 };
 
-const requestType = () => {
-    return new Promise((resolve, reject) => {
-        readline.question('Requests type (par/seq): ', (typeInputValue) => {
-            if (typeInputValue !== 'par' && typeInputValue !== 'seq') {
-                reject('Wrong type');
-                readline.close();
-            }
-            resolve(typeInputValue);
-        });
-    });
-};
-
-const requestsNumber = () => {
-    return new Promise((resolve, reject) => {
-        readline.question('Requests number: ', (numberInputValue) => {
-            if (numberInputValue <= 0) {
-                reject('The value should be a positive number');
-                readline.close();
-            }
-            resolve(numberInputValue);
-        });
-    });
-};
-
 async function sendRequest() {
     try {
-        const type = await requestType();
-        const number = await requestsNumber();
+        const type = await params.requestType();
+        const number = await params.requestsNumber();
 
-        readline.close();
+        params.readline.close();
 
         if (type === 'par') {
             sendParallelRequests(number);
@@ -56,9 +28,7 @@ function sendParallelRequests(requestsNumber) {
 
     for (let i = 1; i <= requestsNumber; i++) {
         console.log('request No ', i);
-        http.get(connectionOptions, (response) => {
-            console.log(response.statusCode);
-        });
+        http.get(connectionOptions, (response) => console.log(response.statusCode));
     }
 }
 
