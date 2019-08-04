@@ -1,0 +1,22 @@
+{
+  "name": "danilova-elena-otus",
+  "version": "1.0.0",
+  "description": "**danilova-elena-otus**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nowyn/danilova-elena-otus.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nowyn/danilova-elena-otus/issues"
+  },
+  "homepage": "https://github.com/Nowyn/danilova-elena-otus#readme",
+  "dependencies": {
+    "http": "0.0.0"
+  }
+}
